@@ -75,8 +75,8 @@ const runComparison =() => {
      leftSideStats.forEach((leftStat, index)=>{
         const rightStat = rightSideStats[index];
 
-        const leftSideValue = Number(leftStat.dataset.value);
-        const rightSideValue = Number(rightStat.dataset.value);
+        const leftSideValue = parseInt(leftStat.dataset.value);
+        const rightSideValue = parseInt(rightStat.dataset.value);
 
         if(rightSideValue > leftSideValue) {
             leftStat.classList.remove("is-primary");
@@ -92,10 +92,11 @@ const runComparison =() => {
 };
 
 const movieTemplate = (movieDetail) => {
-    const dollars = Number(movieDetail?.BoxOffice.replace(/(\$|,)/g,""));
-    const metascore = Number(movieDetail?.Metascore.replace(/(\$|,)/g,""));
-    const imdbRating = Number(movieDetail?.imdbRating.replace(/(\$|,)/g,""));
-    const imdbVotes = Number(movieDetail?.imdbVotes.replace(/(\$|,)/g,""));
+    const dollars = Number((movieDetail?.BoxOffice?.replace(/(\$|,)/g,"")));
+    console.log(movieDetail)
+    const metascore = Number(movieDetail?.Metascore?.replace(/(\$|,)/g,""));
+    const imdbRating = Number(movieDetail?.imdbRating?.replace(/(\$|,)/g,""));
+    const imdbVotes = Number(movieDetail?.imdbVotes?.replace(/(\$|,)/g,""));
 
     const awards = movieDetail?.Awards.split(" ").reduce((prev, word) =>{
         const value = Number(word);
@@ -119,23 +120,23 @@ const movieTemplate = (movieDetail) => {
             </div>
         </article>
         <article data-value=${awards} class="notification is-primary">
-            <p class="title">${movieDetail?.Awards}</p>
+            <p class="title">${movieDetail?.Awards||0}</p>
             <p class="subtitle">Awards</p>
         </article>
         <article data-value=${dollars} class="notification is-primary">
-            <p class="title">${movieDetail?.BoxOffice}</p>
+            <p class="title">${movieDetail?.BoxOffice||0}</p>
             <p class="subtitle">Box Office</p>
         </article>
         <article data-value=${metascore}  class="notification is-primary">
-            <p class="title">${movieDetail?.Metascore}</p>
+            <p class="title">${movieDetail?.Metascore||0}</p>
             <p class="subtitle">Metascore</p>
         </article>
         <article data-value=${imdbRating}  class="notification is-primary">
-            <p class="title">${movieDetail?.imdbRating}</p>
+            <p class="title">${movieDetail?.imdbRating||0}</p>
             <p class="subtitle">imdbRating</p>
         </article>
         <article data-value=${imdbVotes}  class="notification is-primary">
-            <p class="title">${movieDetail?.imdbVotes}</p>
+            <p class="title">${movieDetail?.imdbVotes||0}</p>
             <p class="subtitle">imdbVotes</p>
         </article>
     `
