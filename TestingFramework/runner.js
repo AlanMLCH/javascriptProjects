@@ -6,7 +6,35 @@ class Runner {
         this.testFiles = [];
     };
 
-   async collectFiles(targetPath){
+    async runTests(){
+        for(let file of this.testFiles){
+            const beforeEaches = [];
+            global.beforeEach = (fn) =>{
+                beforeEaches.push(fn);
+            };
+            global.it = (desc, fn) =>{
+                beforeEaches.forEach(func=>func());
+                try{
+                    fn();
+                    console.log(`OK - ${desc}`)
+                } catch(err){
+                    console.log(`X - ${desc}`);
+                    console.log("\t", err.message);
+
+                }
+                
+            };
+            try{
+                require(file.name);
+            } catch(err){
+                console.log("X - Error loading File.", file.name);
+                console.log("\t", err.message);
+
+            }
+        }
+    }
+
+    async collectFiles(targetPath){
       const files = await fs.promises.readdir(targetPath); 
       
       for (let file of files){
