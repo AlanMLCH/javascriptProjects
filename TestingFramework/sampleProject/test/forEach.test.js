@@ -13,7 +13,7 @@ it("should sum an array",()=>{
         total +=value;
     });
 
-    assert.strictEqual(total, 6);
+    assert.strictEqual(total, 60);
     numbers.push(3);
     numbers.push(3);
     numbers.push(3);
