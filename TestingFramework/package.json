@@ -1,0 +1,20 @@
+{
+  "name": "testingframework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "tme": "index.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "jsdom": "^21.1.0",
+    "mocha": "^10.2.0"
+  }
+}
